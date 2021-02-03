@@ -9,11 +9,11 @@ import time
 # 모형 수취대의 가로 길이 = 0.5m, 너비 = 0.15m
 # 모형 수취대로 한바퀴 도는 시간: 1분 = 60초
 
-class luggage:
+class Luggage:
     
-    def __init__(self, info, location):
+    def __init__(self, info):
         self.info = info
-        self.location = location
+        self.location = 0
         self.time = 0   #수취대에 처음 들어왔을 때에 시간은 0초
         
     def loop(self, scan_info):
@@ -30,9 +30,11 @@ class luggage:
     
         
 total_length = 50 #in cm
-avg_speed = 25 # cm/s
+avg_speed = 5 # cm/s
 sections = {'A' : 0, 'B': 10, 'C' : 20, 'D' : 30, 'E' : 40}
 
-def calculate_distance():  #수하물의 qr 코드 정보를 parameter로 받아야함
+def calculate_distance(scan_info):  #수하물의 qr 코드 정보를 parameter로 받아야함
+    
+    l1 = Luggage(scan_info)
     
     

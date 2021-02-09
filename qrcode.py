@@ -44,14 +44,14 @@ while(cap.isOpened()):
     print(text)
     cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
 
-  cv2.imshow('img', img)
+  cv2.imshow('cam', img)
 
   key = cv2.waitKey(1)
-  if key == ord('q'):
+  # ESC 누르면 종료
+  if key == 27:
+    cv2.destroyWindow('cam')
     break
-  elif key == ord('s'):
-    i += 1
-    cv2.imwrite('c_%03d.jpg' % i, img)
 
 cap.release()
+cv2.waitKey(0)
 cv2.destroyAllWindows()

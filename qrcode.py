@@ -1,3 +1,15 @@
+# Require python version : python 3.7.2
+
+# install pyzbar:
+#  - open cmd, type following commands
+#   pip install pyzbar
+
+# install cv2 in cmd
+# - pip install opencv-python
+# - pip install opencv-contrib-python
+# - pip install numpy
+# - pip install matplotlib
+
 import pyzbar.pyzbar as pyzbar
 import cv2
 

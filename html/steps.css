@@ -51,8 +51,10 @@ body {
     margin: 10%;
 }
 
-#check-to-pick{
-    text-align: auto;
-    vertical-align: top;
+.imgs{
+    margin-top: 100px;
+}
 
+.row{
+    width:20%;
 }

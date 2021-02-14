@@ -2,13 +2,19 @@ import pyzbar.pyzbar as pyzbar
 import cv2
 import sqlite3
 import pandas as pd
+import numpy as np
+import datetime
 import time
 
 '''컨베이어 벨트에서 수하물이 돌아갈때 qr스캐너가 코드를 찍는 프로그램'''
 
 def isCaptured(img):
-  if pyzbar.decode(img) != None:
-        return True
+  if pyzbar.decode(img) != []:
+      return True
+    
+def stopwatch(array):
+    if array != []:
+      return (array[len(array) - 1] - array[0])
 
 # Database part
 # DB 연결
@@ -19,11 +25,11 @@ cap = cv2.VideoCapture(0)
 
 i = 0
 num_scan = 0
+start = 0
+sample = []
+
 while(cap.isOpened()):
   ret, img = cap.read()
-  
-  # 시간측정
-  start = time.time()
   
   if not ret:
     continue
@@ -31,12 +37,18 @@ while(cap.isOpened()):
   # 카메라로 찍은 이미지 색변환
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
+  if isCaptured(gray):
+      stop = datetime.datetime.now()
+      sample.append(stop)
+      num_scan += 1
+  
+  print(stopwatch(sample))
+  
   # gray로 변환한 이미지 decode
   decoded = pyzbar.decode(gray)
 
-  num_scan += 1
   for d in decoded:
-    # 이미지에서의 좌표 계산
+        # 이미지에서의 좌표 계산
     x, y, w, h = d.rect
 
     # 좌표의 데이터 utf-8 형식으로 변환
@@ -63,7 +75,6 @@ while(cap.isOpened()):
       
     cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
   
-
   cv2.imshow('cam', img)
   print(num_scan)
 
@@ -72,6 +83,7 @@ while(cap.isOpened()):
   if key == 27:
     cv2.destroyWindow('cam')
     break
+
 
 cap.release()
 cv2.waitKey(0)

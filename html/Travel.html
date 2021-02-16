@@ -8,6 +8,10 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Travel Page</title>
 
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -46,16 +50,16 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Get Tickets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Travel.html">My Travel</a>
+                        <a class="nav-link active" aria-current="page" href="/Travel">My Travel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Luggage.html">My Luggage</a>
+                        <a class="nav-link active" aria-current="page" href="/Luggage">My Luggage</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">My Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Start.html">Logout</a>
+                        <a class="nav-link active" aria-current="page" href="/Logout">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -64,15 +68,15 @@
     <main role="main" class="container">
         <div class="jumbotron">
             <br>
-            <h4><b>My Travel</b></h4>
+            <h4 class="heading4"><b>My Travel</b></h4>
             <div class="d-flex justify-content-center mt-5">
                 <span class="iconify" data-inline="false" data-icon="clarity:plane-solid"
                     style="color: #c4c4c4; font-size: 169px;"></span></span>
             </div>
-            <h5 class="text-center" style="color: #c4c4c4"><br>You don’t have any travels planned yet.<br>Why don’t you
+            <h5 class="text-center heading5" style="color: #c4c4c4"><br>You don’t have any travels planned yet.<br>Why don’t you
                 go on a trip?</h5>
             <button type="button" class="btn btn-circle btn-add" aria-current="page"
-                onclick="location.href='AddTicket.html'">
+                onclick="location.href='/AddTicket'">
                 <span class="iconify" data-inline="false" data-icon="akar-icons:plus"
                     style="font-size: 44px; color: #ffffff"></span>
             </button>
@@ -83,6 +87,7 @@
     body {
         padding-top: 65px;
         position: relative;
+        font-family: 'Noto Sans KR', sans-serif;
     }
 
     .btn-circle.btn-add {
@@ -96,8 +101,57 @@
         justify-content: center;
         align-items: center;
         position: fixed;
-        bottom: 40px;
-        right: 20px;
+        bottom: 5%;
+        right: 5%;
+    }
+
+
+    .heading1 {
+        font-weight: 400;
+        font-size: 64px;
+    }
+    .heading2 {
+        font-weight: 400;
+        font-size: 48px;
+    }
+    .heading3 {
+        font-weight: 400;
+        font-size: 36px;
+    }
+    .heading4 {
+        font-weight: 400;
+        font-size: 24px;
+    }
+    .heading5 {
+        font-weight: 400;
+        font-size: 18px;
+    }
+    .heading5-medium {
+        font-weight: 500;
+        font-size: 18px;
+    }
+    .label {
+        font-weight: 400;
+        font-size: 14px;
+    }
+    .body1 {
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+    .body2 {
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    .body3 {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .heading3-bold {    
+        font-weight: bold;
+        font-size: 36px;
     }
 </style>
 

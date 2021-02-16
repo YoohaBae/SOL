@@ -5,7 +5,7 @@
 
 import pyzbar.pyzbar as pyzbar
 import cv2
-import sqlite3
+import sqlite3 as sq
 import pandas as pd
 import numpy as np
 import datetime
@@ -20,15 +20,20 @@ def stopwatch(array):   #틀렸음
     if array != []:
       return (array[len(array) - 1] - array[0])
     
-# def loop_count(num_scan):  #기준이 애매함
-
-
+def loop_count(num_scan):  #기준이 애매함
+  loop = 0
+  while num_scan > 0:
+    if num_scan / 10 >= 1:
+        loop += 1
+    num_scan = num_scan - 10
+  return loop
+        
 # Database part
 # DB 연결
-# conn = sqlite3.connect('C:\sql_output\example.db')
+# conn = sq.connect('C:\sql_output\example.db')
 # cur = conn.cursor()
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0) 
 
 i = 0
 num_scan = 0
@@ -54,7 +59,7 @@ while(cap.isOpened()):
         pass
   else:
         scans.append(num_scan)
-  
+        
   # gray로 변환한 이미지 decode
   decoded = pyzbar.decode(gray)
 
@@ -87,7 +92,7 @@ while(cap.isOpened()):
   # luggage_info['Time'] = stopwatch(sample)
   # luggage_info['Num_Scan'] = num_scan
   cv2.imshow('cam', img)
-  print(scans)
+  print(loop_count(scans[len(scans) - 1]))
   print(stopwatch(sample))
 
   key = cv2.waitKey(1)

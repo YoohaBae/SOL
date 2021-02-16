@@ -4,7 +4,6 @@ import sqlite3
 import pandas as pd
 import numpy as np
 import datetime
-import time
 
 '''컨베이어 벨트에서 수하물이 돌아갈때 qr스캐너가 코드를 찍는 프로그램'''
 
@@ -12,9 +11,12 @@ def isCaptured(img):
   if pyzbar.decode(img) != []:
       return True
     
-def stopwatch(array):
+def stopwatch(array):   #틀렸음
     if array != []:
       return (array[len(array) - 1] - array[0])
+    
+# def loop_count(num_scan):  #기준이 애매함
+
 
 # Database part
 # DB 연결
@@ -27,6 +29,7 @@ i = 0
 num_scan = 0
 start = 0
 sample = []
+scans = [0]
 
 while(cap.isOpened()):
   ret, img = cap.read()
@@ -42,7 +45,10 @@ while(cap.isOpened()):
       sample.append(stop)
       num_scan += 1
   
-  print(stopwatch(sample))
+  if num_scan == scans[len(scans) - 1]:
+        pass
+  else:
+        scans.append(num_scan)
   
   # gray로 변환한 이미지 decode
   decoded = pyzbar.decode(gray)
@@ -68,22 +74,22 @@ while(cap.isOpened()):
     # luggage_info = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
     
     # # 시간정보, 측정 횟수 추가
-    # luggage_info['Time'] = 0
-    # luggage_info['Num_Scan'] = num_scan
       
     # conn.close()
       
     cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
   
+  # luggage_info['Time'] = stopwatch(sample)
+  # luggage_info['Num_Scan'] = num_scan
   cv2.imshow('cam', img)
-  print(num_scan)
+  print(scans)
+  print(stopwatch(sample))
 
   key = cv2.waitKey(1)
   # ESC 누르면 종료
   if key == 27:
     cv2.destroyWindow('cam')
     break
-
 
 cap.release()
 cv2.waitKey(0)

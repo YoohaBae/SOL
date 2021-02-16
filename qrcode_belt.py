@@ -1,3 +1,8 @@
+# qr코드 스캐너 출처 https://github.com/kairess/qrcode_barcode_detection
+# 위의 출처에서 받은 코드를 변형시켰습니다
+# 개발자: 
+
+
 import pyzbar.pyzbar as pyzbar
 import cv2
 import sqlite3

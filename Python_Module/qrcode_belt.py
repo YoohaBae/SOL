@@ -12,8 +12,11 @@ def isCaptured(img):
     return True
   
 def stopwatch(array):
+  i = 0
   if array != []:
-    return (array[len(array) - 1] - array[0])
+    time = array[len(array) - 1] - array[i]
+    i += 10
+    return time
 
 def loop_count(num_scan):
   loop = 0

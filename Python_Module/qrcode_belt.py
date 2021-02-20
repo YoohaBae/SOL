@@ -11,11 +11,9 @@ def isCaptured(img):
   if pyzbar.decode(img) != []:
     return True
   
-def stopwatch(array):
-  i = 0
+def stopwatch(array, stop_scan):
   if array != []:
-    time = array[len(array) - 1] - array[i]
-    i += 10
+    time = array[len(array) - 1] - array[stop_scan]
     return time
 
 def loop_count(num_scan):
@@ -36,6 +34,7 @@ cap = cv2.VideoCapture(0)
 
 i = 0
 num_scan = 0
+stop_scan = 0
 start = 0
 sample = []
 scans = [0]
@@ -53,8 +52,9 @@ while (cap.isOpened()):
     stop = datetime.datetime.now()
     sample.append(stop)
     num_scan += 1
-    
+  
   if num_scan == scans[len(scans) - 1]:
+    stop_scan = num_scan
     pass
   else:
     scans.append(num_scan)
@@ -84,6 +84,7 @@ while (cap.isOpened()):
     # conn.close()
     
     cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 0), 2)    
+    print(stopwatch(sample, stop_scan))
   
   # Add time info and num_scan info to padas table
   # luggage_info['Time'] = stopwatch(sample)
@@ -91,7 +92,8 @@ while (cap.isOpened()):
   
   cv2.imshow('cam', img)
   print(loop_count(scans[len(scans) - 1]))
-  print(stopwatch(sample))
+  # if sample != []:
+  #       print(sample[len(sample) - 1])
   
   key = cv2.waitKey(1)
   # press ESC to terminate

@@ -27,8 +27,8 @@ def loop_count(num_scan):
   return loop
 
 
-DB part
-DB connect
+# DB part
+# DB connect
 conn = sq.connect('C:\sql_output\example.db')
 cur = conn.cursor()
 

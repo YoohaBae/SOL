@@ -27,10 +27,10 @@ def loop_count(num_scan):
   return loop
 
 
-# DB part
-# DB connect
-# conn = sq.connect('C:\sql_output\example.db')
-# cur = conn.cursor()
+DB part
+DB connect
+conn = sq.connect('C:\sql_output\example.db')
+cur = conn.cursor()
 
 cap = cv2.VideoCapture(0)
 
@@ -79,18 +79,18 @@ while (cap.isOpened()):
     text = '%s (%s)' % (qrcode_data, qrcode_type)
     
     # Get info from DB and create pandas table
-    # query = cur.execute("SELECT * From Luggage_Database")
-    # cols = [column[0] for column in query.description]
+    query = cur.execute("SELECT * From Luggage_Database")
+    cols = [column[0] for column in query.description]
     
-    # luggage_info = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
-    # conn.close()
+    luggage_info = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
+    conn.close()
     
     cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 0), 2)    
     print(stopwatch(sample, stop_scan))
   
   # Add time info and num_scan info to padas table
-  # luggage_info['Time'] = stopwatch(sample)
-  # luggage_info['Num_Scan'] = num_scan
+  luggage_info['Time'] = stopwatch(sample, stop_scan)
+  luggage_info['Num_Scan'] = num_scan
   
   cv2.imshow('cam', img)
   print(loop_count(scans[len(scans) - 1]))

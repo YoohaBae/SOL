@@ -1,3 +1,5 @@
+''' In reference to https://github.com/kairess/qrcode_barcode_detection QR code scanner '''
+
 import pyzbar.pyzbar as pyzbar
 import cv2
 import sqlite3 as sq

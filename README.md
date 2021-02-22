@@ -14,5 +14,3 @@ Then it will automatically calculate how many loops has the luggage went.
 #### QR code scanner screen
 ![Untitled](https://user-images.githubusercontent.com/68123073/108533939-f0bb0900-731c-11eb-8119-fb4927367834.png)
 
-## Main Algorithm
-TBD

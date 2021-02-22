@@ -65,4 +65,9 @@ Uses express to connect the pages. Uses MySQL for the backend.
 
 ### The AI of SOL is developed using data science.
 
-#### 
+#### Steps
+1. Get the mySQL data
+2. connect luggage database with passenger database and find the owner of luggage
+3. Go through luggages and calculate the suggestion time and suggestion location of the luggage.
+4. Distribute the suggestion location so that people do not gather too much at one location and adjust the suggestion time accordingly.
+5. Edit the database if the luggage QR Code is not scanned after a certain time.

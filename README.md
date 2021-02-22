@@ -33,12 +33,6 @@ Includes bootstrap package
 #### public
 Includes images used in website
 
-## Artifical Intelligence
-
-### The AI of SOL is developed using data science.
-
-#### 
-
 #### views
 Includes ejs files
 
@@ -66,3 +60,9 @@ Uses express to connect the pages. Uses MySQL for the backend.
   - Off-flight status:
   - On-flight status:
   - 
+
+## Artifical Intelligence
+
+### The AI of SOL is developed using data science.
+
+#### 

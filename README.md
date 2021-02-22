@@ -33,6 +33,12 @@ Includes bootstrap package
 #### public
 Includes images used in website
 
+## Artifical Intelligence
+
+### The AI of SOL is developed using data science.
+
+#### 
+
 #### views
 Includes ejs files
 

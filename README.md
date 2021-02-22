@@ -52,11 +52,13 @@ Uses express to connect the pages. Uses MySQL for the backend.
 
 #### How to run website
 1. Download all folders.
-2. Open a terminal where the folder is located.
-3. Enter npm install <package-name> for all packages in Used Packages
-4. Enter npm start
-5. Open browser and enter localhost:3000
-6. Login using the below data
+2. Download Xampp
+3. Run mysql and apache
+4. Open a terminal where the folder is located.
+5. Enter npm install <package-name> for all packages in Used Packages
+6. Enter node index.js
+7. Open browser and enter localhost:3000
+8. Login using the below data
   - Off-flight status:
   - On-flight status:
   - 

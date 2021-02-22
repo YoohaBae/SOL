@@ -21,7 +21,7 @@ Then it will automatically calculate how many loops has the luggage went.
 #### html:
 Includes pure html code
 
-#### CSS
+#### css
 Includes the css style of website
 
 #### node_modules
@@ -38,3 +38,25 @@ Includes ejs files
 
 #### index.js
 Uses express to connect the pages. Uses MySQL for the backend.
+
+#### Used Packages
+- mysql
+- express-session
+- fs
+- body-parser
+- path
+- express
+- sync-mysql
+- url
+- ejs
+
+#### How to run website
+1. Download all folders.
+2. Open a terminal where the folder is located.
+3. Enter npm install <package-name> for all packages in Used Packages
+4. Enter npm start
+5. Open browser and enter localhost:3000
+6. Login using the below data
+  - Off-flight status:
+  - On-flight status:
+  - 

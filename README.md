@@ -16,7 +16,7 @@ Then it will automatically calculate how many loops has the luggage went.
 
 ## Website
 
-### Website is consisted of 5 folders; html, css, bootstrap, node_modules, public, views
+### Website is consisted of 5 folders and one file; html, css, bootstrap, node_modules, public, views, index.js
 
 #### html:
 Includes pure html code
@@ -24,17 +24,17 @@ Includes pure html code
 #### CSS
 Includes the css style of website
 
-### node_modules
+#### node_modules
 Includes Node.js package
 
-### bootstrap-5.0.0-beta1-dist
+#### bootstrap-5.0.0-beta1-dist
 Includes bootstrap package
 
-### public
+#### public
 Includes images used in website
 
-### views
+#### views
 Includes ejs files
 
-### index.js
+#### index.js
 Uses express to connect the pages. Uses MySQL for the backend.

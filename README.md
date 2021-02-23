@@ -59,9 +59,9 @@ Uses express to connect the pages. Uses MySQL for the backend.
 6. Enter node index.js
 7. Open browser and enter localhost:3000
 8. Login using the below data
-  - Off-flight status:
-  - On-flight status:
-  - 
+  - Off-flight status: amcculloch@gmail.com 0001
+  - On-flight status: scrosby@gmail.com 0002
+  - Pick-up status: ybae@gmail.com 0011
 
 ## Artifical Intelligence
 

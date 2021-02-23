@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Luggage Arrival</title>
+
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+</head>
+
+<body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--navigation bar before login-->
+    <nav class="navbar fixed-top navbar-dark" style="background-color: #2D6073;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="iconify" data-inline="false" data-icon="ant-design:menu-outlined"
+                    style="color: #ffffff; font-size: 24px;"></span>
+            </button>
+            <a class="navbar-brand mx-auto" href="#">My Luggage</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">My Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Get Tickets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Travel">My Travel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Luggage">My Luggage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <div class="row center">
+            <div class="col-2" style="margin-left: 4%">
+                <div class="<%=addedLuggage.status%>" id="check-in"
+                    style="background-color: #558FA7; border-radius: 10px; width: 46px; height: 46px">
+                    <span class="iconify" data-inline="false" data-icon="akar-icons:check"
+                        style="font-size: 46px; color: white;"></span>
+                </div>
+                <label class="status-text" style="text-align: center;">Check-in</label>
+            </div>
+            <div class="col-2">
+                <div id="on-flight" style="background-color: #558FA7; border-radius: 10px; width: 46px; height: 46px">
+                    <span class="iconify" data-inline="false" data-icon="ic:sharp-flight-takeoff"
+                        style="color: #ffffff; font-size: 43px;"></span>
+                </div>
+                <label class="status-text" style="text-align: center;">On-Flight</label>
+            </div>
+            <div class="col-2">
+                <div id="off-flight" style="background-color: #558FA7; border-radius: 10px; width: 46px; height: 46px">
+                    <span class="iconify" data-inline="false" data-icon="ic:sharp-flight-land"
+                        style="color: #ffffff; font-size: 43px;"></span>
+                </div>
+                <label class="status-text" style="text-align: center;">Off-Flight</label>
+            </div>
+            <div class="col-2">
+                <div id="conveyor-belt"
+                    style="background-color: #558FA7; border-radius: 10px; width: 46px; height: 46px">
+                    <img src="../Conveyor.png">
+                </div>
+                <label class="status-text" style="text-align: center;">Conveyor Belt</label>
+            </div>
+            <div class="col-2">
+                <div id="pick-up" style="background-color: #558FA7; border-radius: 10px; width: 46px; height: 46px">
+                    <span class="iconify" data-inline="false" data-icon="ri:luggage-cart-line"
+                        style="color: #ffffff; font-size: 44px;"></span>
+                </div>
+                <label class="status-text" style="text-align: center;">Pick-Up</label>
+            </div>
+        </div>
+        <br>
+        <label class="circle">
+            <span class="iconify" data-inline="false" data-icon="emojione-v1:left-check-mark"
+                style="font-size: 28px;"></span>
+        </label>
+        <label class="heading5" style="display:inline;">&nbsp Luggage Arrival</label>
+        <h4 class="heading5" style="margin-left:46px;">Location: Line <%=addedLuggage.line%>
+                </h3>
+                <h4 class="heading5" style="margin-left:46px; display:inline;">Time:</h3>
+                    <p id="arrivalTime" class="heading3" style="display:inline;">
+                        <%if(addedLuggage.arrivalTime) {%>
+
+                            <%} else { %>
+                                Unknown
+                                <%}%>
+                    </p>
+                    <span class="iconify" data-inline="false" data-icon="fluent:more-circle-20-filled"
+                        style="color: #2d6073; font-size: 30px; display:inline" onclick="showLine()"></span>
+                    <% if(addedLuggage.line) {%>
+                        <img id="line-div" class="img-fluid" alt="Responsive image" style="display: none"
+                            src="../line.png">
+                        <%}%>
+                            <br>
+                            <label class="circle">
+                                <span class="iconify" data-inline="false" data-icon="emojione-v1:left-check-mark"
+                                    style="font-size: 28px;"></span>
+                            </label>
+                            <label class="heading5" style="display:inline;">&nbsp Luggage Pick-up Suggestion</label>
+                            <h4 class="heading5" style="margin-left:46px;">Location:
+                                <%if(addedLuggage.suggestion) {%>
+                                    <%=addedLuggage.line%>-<%=addedLuggage.suggestion%>
+                                            <%} else { %>
+                                                Unknown
+                                                <%}%>
+                                                    </h3>
+                                                    <h4 class="heading5" style="margin-left:46px; display:inline;">Time:
+                                                        </h3>
+                                                        <p id="suggestionTime" class="heading3" style="display:inline;">
+                                                            <%if(!addedLuggage.suggestionTime) {%>
+                                                                Unknown
+                                                            <%}%>
+                                                        </p>
+                                                        <span class="iconify" data-inline="false"
+                                                            data-icon="fluent:more-circle-20-filled"
+                                                            style="color: #2d6073; font-size: 30px; display:inline"
+                                                            onclick="showSuggestion()"></span>
+                                                        <%if(addedLuggage.suggestion) {%>
+                                                            <img id="suggestion-div" class="img-fluid"
+                                                                alt="Responsive image" style="display: none"
+                                                                src="../suggestion_<%=addedLuggage.suggestion%>.png">
+                                                        <%}%>
+
+
+
+    </main>
+</body>
+<script>
+    function showLine() {
+        var x = document.getElementById("line-div");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function showSuggestion() {
+        var x = document.getElementById("suggestion-div");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+
+    var status = document.getElementById("check-in").className;
+
+    if (status == "check-in") {
+        document.getElementById("check-in").style.backgroundColor = "#2D6073";
+    }
+    else if (status == "on-flight") {
+        document.getElementById("check-in").style.backgroundColor = "#2D6073";
+        document.getElementById("on-flight").style.backgroundColor = "#2D6073";
+    }
+    else if (status == "off-flight") {
+        document.getElementById("check-in").style.backgroundColor = "#2D6073";
+        document.getElementById("on-flight").style.backgroundColor = "#2D6073";
+        document.getElementById("off-flight").style.backgroundColor = "#2D6073";
+    }
+    else if (status == "conveyor-belt") {
+        document.getElementById("check-in").style.backgroundColor = "#2D6073";
+        document.getElementById("on-flight").style.backgroundColor = "#2D6073";
+        document.getElementById("off-flight").style.backgroundColor = "#2D6073";
+        document.getElementById("conveyor-belt").style.backgroundColor = "#2D6073";
+    }
+    else if (status == "pick-up") {
+        document.getElementById("check-in").style.backgroundColor = "#2D6073";
+        document.getElementById("on-flight").style.backgroundColor = "#2D6073";
+        document.getElementById("off-flight").style.backgroundColor = "#2D6073";
+        document.getElementById("conveyor-belt").style.backgroundColor = "#2D6073";
+        document.getElementById("pick-up").style.backgroundColor = "#2D6073";
+    }
+        // Set the date we're counting down to
+        if (!document.getElementById("arrivalTime").innerHTML.includes("Unknown")) {
+            var countDownDate = new Date("Feb 14, 2022 20:37:25").getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function () {
+
+                // Get today's date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("arrivalTime").innerHTML = minutes + "m " + seconds + "s ";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "Arrived";
+                }
+            }, 1000);
+        }
+        if (!document.getElementById("suggestionTime").innerHTML.includes("Unknown")) {
+            var countDownDate2 = new Date("Feb 14, 2022 20:38:25").getTime();
+
+            // Update the count down every 1 second
+            var x2 = setInterval(function () {
+
+                // Get today's date and time
+                var now2 = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance2 = countDownDate2 - now2;
+
+                // Time calculations for days, hours, minutes and seconds
+                var minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("suggestionTime").innerHTML = minutes2 + "m " + seconds2 + "s ";
+
+                // If the count down is finished, write some text
+                if (distance2 < 0) {
+                    clearInterval(x2);
+                    document.getElementById("demo").innerHTML = "Arrived";
+                }
+            }, 1000);
+        }
+</script>
+
+<style>
+    body {
+        padding-top: 65px;
+        position: relative;
+        font-family: 'Noto Sans KR', sans-serif;
+        display: flex;
+        align-items: center;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+
+    .col-2 {
+        margin-left: 1%;
+        margin-right: 1%;
+        padding: 0%
+    }
+
+    .circle {
+        width: 33px;
+        height: 33px;
+        border-radius: 25px;
+        font-size: 10px;
+        text-align: center;
+        background-color: #2D6073;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .status-text {
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    .heading1 {
+        font-weight: 400;
+        font-size: 64px;
+    }
+
+    .heading2 {
+        font-weight: 400;
+        font-size: 48px;
+    }
+
+    .heading3 {
+        font-weight: 400;
+        font-size: 36px;
+    }
+
+    .heading4 {
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+    .heading5 {
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    .heading5-medium {
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .label {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .body1 {
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+    .body2 {
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    .body3 {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .heading3-bold {
+        font-weight: bold;
+        font-size: 36px;
+    }
+</style>
+
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Travel Page</title>
+
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--navigation bar before login-->
+    <nav class="navbar fixed-top navbar-dark" style="background-color: #2D6073;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="iconify" data-inline="false" data-icon="ant-design:menu-outlined"
+                    style="color: #ffffff; font-size: 24px;"></span>
+            </button>
+            <a class="navbar-brand mx-auto" href="#">My Travel</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">My Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Get Tickets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Travel">My Travel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Luggage">My Luggage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main role="main" class="container">
+        <% if(addedTicket){ %>
+            <% addedTicket.forEach(function(ticket, index) { %>
+                <div class="jumbotron ticket">
+                    <div>
+                        <h4 class="departure-airport heading4" style="display:inline">
+                            <%= ticket.departureAirport%>
+                        </h4>
+                        <span class="iconify" data-inline="false" data-icon="carbon:airport-02"
+                            style="color: #ffffff; font-size: 21px;"></span>
+                        <h4 class="arrival-airport heading4" style="display:inline">
+                            <%= ticket.destinationAirport%>
+                        </h4>
+                        <p class="label">
+                            <%= ticket.flightNumber%><br>
+                                <%= ticket.departureTime%> / 1 seat
+                        </p>
+                        <div class="btn-toolbar" style="padding-left: 2%">
+                            <button class="btn btn-light btn-sm quick-check-in-button body3" type="button">Quick
+                                Check-in</button>
+                            <button class="btn btn-light btn-sm details-button body3" id="details-button"
+                                onclick="detailsButtonClick('<%=index%>')">Details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket-details" style="display:none">
+                    <div class="gray-border container">
+                        <div class="row">
+                            <div class="col-5">
+                                <h5 class="heading5-medium" style="text-align: center">
+                                    <%= ticket.departureAirport%>
+                                </h5>
+                                <p class="body4" style="text-align: center">
+                                    <%= ticket.departureCity%>
+                                        <br>
+                                        <%= ticket.departureTime%>
+                                            <br>
+                                            <%= ticket.departureAirport%>
+                                </p>
+
+                            </div>
+                            <div class="col-2">
+                                <span class="iconify" data-inline="false" data-icon="carbon:airport-02"
+                                    style="color: #2d6073; font-size: 21px;"></span>
+                            </div>
+                            <div class="col-5">
+                                <h5 class="heading5-medium" style="text-align: center">
+                                    <%= ticket.destinationAirport%>
+                                </h5>
+                                <p class="body4" style="text-align: center">
+                                    <%= ticket.destinationCity%>
+                                        <br>
+                                        <%= ticket.destinationTime%>
+                                            <br>
+                                            <%= ticket.destinationAirport%>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gray-border" style="margin-top:5%; margin-top:5%; padding:2%">
+                        <p class="body3-medium">Passenger Information</p>
+                        <div class="d-flex justify-content-between body3">
+                            <div>Name</div>
+                            <div>
+                                <%= passenger.firstName%>
+                                    <%= passenger.lastName%>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between body3">
+                            <div>Birth Date</div>
+                            <div>
+                                <%= passenger.birthDate%>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between body3">
+                            <div>Passport Num.</div>
+                            <div>
+                                <%= passenger.passportNum%>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between body3">
+                            <div>Country</div>
+                            <div>
+                                <%= passenger.country%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar" style="padding-left: 2%; margin-top: 2%">
+                        <button class="btn btn-light btn-sm body4 editTicketInfo" type="button">Choose Seat</button>
+                        <button class="btn btn-light btn-sm body4 editTicketInfo"
+                            type="button">Change<br>Reservation</button>
+                        <button class="btn btn-light btn-sm body4 editTicketInfo"
+                            type="button">Cancel<br>Reservation</button>
+                    </div>
+                </div>
+                <br>
+            <% }) %>
+        <% } %>
+
+        <button type="button" class="btn btn-circle btn-add" aria-current="page"
+            onclick="location.href='/AddTicket'">
+            <span class="iconify" data-inline="false" data-icon="akar-icons:plus"
+                style="font-size: 44px; color: #ffffff"></span>
+        </button>
+    </main>
+</body>
+<script>
+    function detailsButtonClick(index) {
+        var x = document.getElementsByClassName("ticket-details")[index];
+        console.log(index);
+        var y = document.getElementsByClassName("ticket")[index];
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.borderRadius = "20px 20px 0px 0px";
+
+        } else {
+            x.style.display = "none";
+            y.style.borderRadius = "20px 20px 20px 20px";
+        }
+    }
+</script>
+
+<style>
+    body {
+        padding-top: 65px;
+        position: relative;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .btn-circle.btn-add {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        font-size: 10px;
+        text-align: center;
+        background-color: #2D6073;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+    }
+
+    .ticket {
+        background-color: #558FA7;
+        border-radius: 20px;
+        width: 100%;
+        color: white;
+        padding: 10px;
+    }
+
+    .editTicketInfo {
+        background-color: #558FA7;
+        color: white;
+        border-radius: 10px;
+        width: 30%;
+        margin-left: 2%
+    }
+
+    .btn.btn-light.btn-sm.quick-check-in-button {
+        width: 46%;
+        border-radius: 10px;
+    }
+
+    .btn.btn-light.btn-sm.details-button {
+        width: 46%;
+        margin-left: 4%;
+        border-radius: 10px;
+    }
+
+    .ticket-details {
+        background-color: white;
+        border-radius: 0px 0px 20px 20px;
+        width: 100%;
+        color: black;
+        padding: 10px;
+        border: 2px solid #558FA7;
+    }
+
+    . {
+        background-color: #558FA7;
+        color: white;
+    }
+
+    .gray-border {
+        border: 1px solid #C4C4C4;
+    }
+
+    .heading1 {
+        font-weight: 400;
+        font-size: 64px;
+    }
+
+    .heading2 {
+        font-weight: 400;
+        font-size: 48px;
+    }
+
+    .heading3 {
+        font-weight: 400;
+        font-size: 36px;
+    }
+
+    .heading4 {
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+    .heading5 {
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    .heading5-medium {
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .label {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .body1 {
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+    .body2 {
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    .body3 {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .body3-medium {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .body4 {
+        font-weight: 400;
+        font-size: 10px
+    }
+
+    .heading3-bold {
+        font-weight: bold;
+        font-size: 36px;
+    }
+</style>
+
+
+</html>
